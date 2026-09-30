@@ -16,17 +16,24 @@ public class StaticServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String uri = request.getRequestURI();
-        File file = getLegalPath(SOURCE_PATH, uri);
-        if (file == null) {
-            file = getLegalPath(getServletContext().getRealPath(DEPLOY_PATH), uri);
+        String[] uris = uri.split("\\+");
+        File[] files = new File[uris.length];
+        for (int i = 0; i < uris.length; i++) {
+            files[i] = getLegalPath(SOURCE_PATH, uris[i]);
+            if (files[i] == null) {
+                files[i] = getLegalPath(getServletContext().getRealPath(DEPLOY_PATH), uris[i]);
+            }
+            if (files[i] == null) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;
+            }
         }
-        if (file != null) {
-            response.setContentType(getServletContext().getMimeType(file.getName()));
-            try (OutputStream outputStream = response.getOutputStream()) {
+
+        response.setContentType(getServletContext().getMimeType(files[0].getName()));
+        try (OutputStream outputStream = response.getOutputStream()) {
+            for (File file : files) {
                 Files.copy(file.toPath(), outputStream);
             }
-        } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
 
