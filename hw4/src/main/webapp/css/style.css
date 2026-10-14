@@ -111,3 +111,35 @@ footer {
     border-top: var(--boder);
     text-align: center;
 }
+
+
+.user {
+    display: flow-root;
+    border: var(--boder);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.user h2 {
+    margin: 0 0 10px;
+}
+
+.user img {
+    float: right;
+    width: 150px;
+    height: 150px;
+}
+
+.user-nav {
+    gap: 15px;
+    font-size: 30px;
+}
+
+.user-nav a {
+    text-decoration: none;
+}
+
+.arrow {
+    color: #CCCCCC;
+}

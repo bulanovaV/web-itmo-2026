@@ -1,6 +1,7 @@
 package ru.itmo.web.hw4.web;
 
 import freemarker.template.*;
+import ru.itmo.web.hw4.model.User;
 import ru.itmo.web.hw4.util.DataUtil;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FreemarkerServlet extends HttpServlet {
@@ -70,11 +72,39 @@ public class FreemarkerServlet extends HttpServlet {
 
         for (Map.Entry<String, String[]> e : request.getParameterMap().entrySet()) {
             if (e.getValue() != null && e.getValue().length == 1) {
-                data.put(e.getKey(), e.getValue()[0]);
+                String name = e.getKey();
+                String value = e.getValue()[0];
+                if (name.endsWith("_id")) {
+                    try {
+                        data.put(name, Long.parseLong(value));
+                    } catch (Exception ignored) {
+                    }
+                } else {
+                    data.put(name, value);
+                }
             }
         }
 
         DataUtil.addData(request, data);
+
+        if (request.getRequestURI().equals(request.getContextPath() + "/user")) {
+            List<User> users = (List<User>) data.get("users");
+
+            for (int i = 0; i < users.size(); i++) {
+                User user = users.get(i);
+
+                if (data.containsKey("user_id")) {
+                    if (user.getId() != (Long) data.get("user_id")) continue;
+                } else {
+                    if (!user.getHandle().equals(data.get("handle"))) continue;
+                }
+
+                data.put("curUser", user);
+                if (i > 0) data.put("leftUser", users.get(i - 1));
+                if (i < users.size() - 1) data.put("rightUser", users.get(i + 1));
+                break;
+            }
+        }
         return data;
     }
 }
