@@ -45,6 +45,11 @@ public class FreemarkerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String path = request.getRequestURI();
+        if (path.isEmpty() || path.equals("/")){
+            response.sendRedirect("/index");
+            return;
+        }
         request.setCharacterEncoding(UTF_8);
         response.setCharacterEncoding(UTF_8);
 
@@ -52,8 +57,8 @@ public class FreemarkerServlet extends HttpServlet {
         try {
             template = freemarkerConfiguration.getTemplate(URLDecoder.decode(request.getRequestURI(), UTF_8) + ".ftlh");
         } catch (TemplateNotFoundException ignored) {
+            template = freemarkerConfiguration.getTemplate("404.ftlh");
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            return;
         }
 
         Map<String, Object> data = getData(request);
