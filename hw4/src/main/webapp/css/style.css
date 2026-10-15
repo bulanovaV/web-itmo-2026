@@ -3,6 +3,7 @@
     font-family: Verdana, sans-serif;
     color: rgb(34, 34, 34);
 
+    --text: Arial, sans-serif;
     --border-color: rgb(185, 185, 185);
     --boder: 1px solid var(--border-color);
     --border-radius: 6px;
@@ -54,7 +55,7 @@ header nav ul li a {
     font-weight: bold;
     text-transform: uppercase;
     color: black;
-    font-family: Arial, sans-serif;
+    font-family: var(--text);
     margin-right: 1rem;
 }
 
@@ -145,5 +146,24 @@ footer {
 }
 
 header nav ul li a.active {
-    border-bottom: 3px solid #3B5998;
+    border-bottom: 3px solid var(--caption-color);
+}
+
+
+.user-RED, .user-GREEN, .user-BLUE {
+    text-decoration: none;
+    font-family: var(--text);
+    font-weight: bold;
+}
+
+.user-RED {
+    color: red;
+}
+
+.user-GREEN {
+    color: green;
+}
+
+.user-BLUE {
+    color: blue;
 }

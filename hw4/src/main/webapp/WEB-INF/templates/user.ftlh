@@ -13,7 +13,7 @@
         <div class="user">
             <img src="/img/avatar.png">
             <div>
-                <h2><@c.userlink curUser/></h2>
+                <h2><@c.userlink user=curUser nameOnly=(nameOnly! == "true")/></h2>
                 <ul>
                     <li>id: ${curUser.id}</li>
                     <li>handle: ${curUser.handle}</li>

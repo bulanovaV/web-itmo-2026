@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class DataUtil {
     private static final List<User> USERS = Arrays.asList(
-            new User(1, "MikeMirzayanov", "Mike Mirzayanov"),
-            new User(6, "pashka", "Pavel Mavrin"),
-            new User(9, "geranazavr555", "Georgiy Nazarov"),
-            new User(11, "tourist", "Gennady Korotkevich")
+            new User(1, "MikeMirzayanov", "Mike Mirzayanov", User.Color.BLUE),
+            new User(6, "pashka", "Pavel Mavrin", User.Color.BLUE),
+            new User(9, "geranazavr555", "Georgiy Nazarov", User.Color.GREEN),
+            new User(11, "tourist", "Gennady Korotkevich", User.Color.RED)
     );
 
     public static void addData(HttpServletRequest request, Map<String, Object> data) {

@@ -111,6 +111,17 @@ public class FreemarkerServlet extends HttpServlet {
             }
         }
         data.put("currentPath", request.getRequestURI());
+
+        String nameOnly = request.getParameter("nameOnly");
+        if (nameOnly != null) {
+            request.getSession().setAttribute("nameOnly", nameOnly);
+        }
+        String nameOnlyS = (String) request.getSession().getAttribute("nameOnly");
+        if (nameOnlyS != null) {
+            data.put("nameOnly", nameOnlyS);
+        } else {
+            data.put("nameOnly", "false");
+        }
         return data;
     }
 }

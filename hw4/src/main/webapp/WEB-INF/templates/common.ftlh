@@ -33,7 +33,7 @@
         </div>
         <div class="enter-or-register-box">
             <#if user??>
-                <@userlink user/>
+                <@userlink user true/>
                 |
                 <a href="/logout">Logout</a>
             <#else>
@@ -102,9 +102,13 @@
     </footer>
 </#macro>
 
-<#macro userlink user>
+<#macro userlink user nameOnly=false>
 <#-- @ftlvariable name="user" type="ru.itmo.web.hw4.model.User" -->
-    <a href="/user?handle=${user.handle}">${user.name}</a>
+   <#if nameOnly>
+       <a href="/user?handle=${user.handle}">${user.name}</a>
+   <#else>
+       <a href="/user?handle=${user.handle}" class="user-${user.color}">${user.handle}</a>
+   </#if>
 </#macro>
 
 <#function findBy items key value>
