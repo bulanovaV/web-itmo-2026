@@ -105,6 +105,7 @@ public class FreemarkerServlet extends HttpServlet {
                 break;
             }
         }
+        data.put("currentPath", request.getRequestURI());
         return data;
     }
 }

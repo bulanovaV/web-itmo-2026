@@ -143,3 +143,7 @@ footer {
 .arrow {
     color: #CCCCCC;
 }
+
+header nav ul li a.active {
+    border-bottom: 3px solid #3B5998;
+}

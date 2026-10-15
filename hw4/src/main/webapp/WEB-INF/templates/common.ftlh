@@ -51,7 +51,12 @@
             <ul>
                 <#list items as item>
                     <li>
-                        <a href="${item.href}">${item.name}</a>
+                        <a href="${item.href}"
+                           <#if currentPath == item.href>
+                               class="active"
+                           </#if>>
+                            ${item.name}
+                        </a>
                     </li>
                 </#list>
             </ul>
