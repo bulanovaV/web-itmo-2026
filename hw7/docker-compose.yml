@@ -14,7 +14,7 @@ services:
       MARIADB_PASSWORD: wp
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     ports:
-      - "3306:3306"     # если порт 3306 занят, замените на "3307:3306" и поправьте URL в profile.properties
+      - "3307:3306"     # если порт 3306 занят, замените на "3307:3306" и поправьте URL в profile.properties
     volumes:
       - db-data:/var/lib/mysql
 

@@ -65,6 +65,18 @@ header nav ul li {
     margin-left: 1rem;
 }
 
+.currentUser .info{
+    color: var(--caption-color);
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.currentUser p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
 header nav ul li a {
     text-decoration: none;
     color: var(--black-color);
