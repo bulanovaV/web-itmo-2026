@@ -150,3 +150,30 @@ aside section .footer a:after {
     background-color: var(--message-background-color);
     text-align: center;
 }
+
+
+.notices-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.notices-table td {
+    padding: 8px 5px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.notices-table .id {
+    color: #888;
+    font-size: 12px;
+    width: 15px;
+}
+
+.notices-table .content {
+    font-size: 14px;
+}
+
+.notices-table .creationTime {
+    color: #999;
+    font-size: 11px;
+}

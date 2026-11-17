@@ -23,7 +23,6 @@
                     </div>
                     <@c.error "registerForm.password"/>
                 </div>
-                <div class="error"></div>
                 <div class="button-field">
                     <input type="submit" value="Register">
                 </div>

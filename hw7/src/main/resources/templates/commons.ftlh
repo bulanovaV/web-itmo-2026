@@ -45,10 +45,17 @@
                 <div class="header">
                     Pay attention
                 </div>
-                <div class="body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate ducimus enim facere impedit nobis,
-                    nulla placeat quam suscipit unde voluptatibus.
-                </div>
+                  <#if notices??>
+                    <table class="notices-table">
+                        <#list notices as notice>
+                            <tr>
+                                <td class="id">${notice.id}</td>
+                                <td class="content">${notice.content}</td>
+                                <td class="creationTime">${notice.creationTime}</td>
+                            </tr>
+                        </#list>
+                    </table>
+                  </#if>
                 <div class="footer">
                     <a href="#">View all</a>
                 </div>
