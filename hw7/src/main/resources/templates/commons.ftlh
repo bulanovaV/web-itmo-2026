@@ -42,24 +42,47 @@
     <div class="middle">
         <aside>
             <section>
-                <div class="header">
-                    Pay attention
+            <div class="header">
+                Pay attention
+            </div>
+            <#if notices??>
+                <table class="notices-table">
+                    <#list notices as notice>
+                        <tr>
+                            <td class="id">${notice.id}</td>
+                            <td class="content">${notice.content}</td>
+                            <td class="creationTime">${notice.creationTime}</td>
+                        </tr>
+                    </#list>
+                </table>
+            </#if>
+
+            <div class="footer">
+                <a href="#">View all</a>
+            </div>
+        </section>
+
+        <#if user??>
+            <div class="registration form-box">
+                <div class="header">Add notice</div>
+                    <div class="body">
+                        <form method="post" action="/notice/add">
+                            <div class="field">
+                                <div class="name">
+                                    <label for="content">Content</label>
+                                </div>
+                                <div class="value">
+                                    <input id="content" name="content"/>
+                                </div>
+                                <@error "noticeForm.content"/>
+                            </div>
+                            <div class="button-field">
+                                <input type="submit" value="Add"/>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                  <#if notices??>
-                    <table class="notices-table">
-                        <#list notices as notice>
-                            <tr>
-                                <td class="id">${notice.id}</td>
-                                <td class="content">${notice.content}</td>
-                                <td class="creationTime">${notice.creationTime}</td>
-                            </tr>
-                        </#list>
-                    </table>
-                  </#if>
-                <div class="footer">
-                    <a href="#">View all</a>
-                </div>
-            </section>
+            </#if>
         </aside>
         <main>
             <#nested/>

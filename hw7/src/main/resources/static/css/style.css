@@ -177,3 +177,28 @@ aside section .footer a:after {
     color: #999;
     font-size: 11px;
 }
+
+aside .form-box {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 1rem;
+}
+
+aside .form-box .field {
+    margin: 1rem;
+}
+
+aside .form-box .field .name,
+aside .form-box .field .value {
+    float: none;
+    width: 100%;
+    text-align: left;
+}
+
+aside .form-box .button-field {
+    margin: 1rem;
+}
+
+aside .form-box .value input {
+    width: 80%;
+}

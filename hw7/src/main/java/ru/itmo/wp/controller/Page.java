@@ -1,15 +1,19 @@
 package ru.itmo.wp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import ru.itmo.wp.domain.Notice;
 import ru.itmo.wp.domain.User;
+import ru.itmo.wp.form.NoticeCredentials;
 import ru.itmo.wp.service.NoticeService;
 import ru.itmo.wp.service.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+
+@Controller
 public class Page {
     private static final String USER_ID_SESSION_KEY = "userId";
     private static final String MESSAGE_SESSION_KEY = "message";
@@ -18,7 +22,7 @@ public class Page {
     private UserService userService;
 
     @Autowired
-    private NoticeService noticeService;
+    protected NoticeService noticeService;
 
     @ModelAttribute("user")
     public User getUser(HttpSession httpSession) {
@@ -51,7 +55,11 @@ public class Page {
     @ModelAttribute("notices")
     public List<Notice> getNotices() {
         return noticeService.getNotices();
+    }
 
+    @ModelAttribute("noticeForm")
+    public NoticeCredentials getNoticeForm() {
+        return new NoticeCredentials();
     }
 
 }
