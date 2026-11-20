@@ -28,6 +28,28 @@ public class User {
     @CreationTimestamp
     private Date creationTime;
 
+
+    private boolean isDisabled = false;
+
+    private boolean isAdmin = false;
+
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isDisabled() {
+        return isDisabled;
+    }
+
+    public void setDisabled(boolean disabled) {
+        isDisabled = disabled;
+    }
+
     public long getId() {
         return id;
     }

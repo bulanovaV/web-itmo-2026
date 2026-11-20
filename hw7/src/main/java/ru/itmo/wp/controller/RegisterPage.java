@@ -25,7 +25,7 @@ public class RegisterPage extends Page {
         this.userCredentialsRegisterValidator = userCredentialsRegisterValidator;
     }
 
-    @InitBinder
+    @InitBinder("registerForm")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCredentialsRegisterValidator);
     }

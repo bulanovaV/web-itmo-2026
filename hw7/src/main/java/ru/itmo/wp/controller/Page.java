@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 public class Page {
-    private static final String USER_ID_SESSION_KEY = "userId";
+    protected static final String USER_ID_SESSION_KEY = "userId";
     private static final String MESSAGE_SESSION_KEY = "message";
 
     @Autowired

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.itmo.wp.domain.User;
 import ru.itmo.wp.form.UserCredentials;
 import ru.itmo.wp.form.validator.UserCredentialsEnterValidator;
 import ru.itmo.wp.service.UserService;
@@ -25,7 +26,7 @@ public class EnterPage extends Page {
         this.userCredentialsEnterValidator = userCredentialsEnterValidator;
     }
 
-    @InitBinder
+    @InitBinder("enterForm")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCredentialsEnterValidator);
     }
@@ -40,12 +41,25 @@ public class EnterPage extends Page {
     public String register(@Valid @ModelAttribute("enterForm") UserCredentials enterForm,
                            BindingResult bindingResult,
                            HttpSession httpSession) {
+        User user = userService.findByLoginAndPassword(
+                enterForm.getLogin(), enterForm.getPassword()
+        );
+
         if (bindingResult.hasErrors()) {
             return "EnterPage";
         }
 
-        setUser(httpSession, userService.findByLoginAndPassword(enterForm.getLogin(), enterForm.getPassword()));
-        setMessage(httpSession, "Hello, " + getUser(httpSession).getLogin());
+        if (user.isDisabled()) {
+            bindingResult.rejectValue(
+                    "login",
+                    "disabled",
+                    "Your account is disabled"
+            );
+            return "EnterPage";
+        }
+
+        setUser(httpSession, user);
+        setMessage(httpSession, "Hello, " + user.getLogin());
 
         return "redirect:";
     }
